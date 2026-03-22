@@ -1,0 +1,5 @@
+{
+  "name": "PetPerdido Guarujá",
+  "description": "A maior rede de apoio para encontrar animais perdidos no litoral de Guarujá. Conectando donos e heróis para trazer pets de volta para casa.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"]
+}

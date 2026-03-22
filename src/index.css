@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+@theme {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #F97316;
+  --color-secondary: #F59E0B;
+  --color-accent: #06B6D4;
+  --color-background: #FAFAFA;
+  --color-text: #1F2937;
+  --color-perdido: #EF4444;
+  --color-encontrado: #22C55E;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans;
+  }
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

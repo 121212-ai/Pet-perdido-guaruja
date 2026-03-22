@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "fcmToken": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email"]
+    },
+    "Pet": {
+      "title": "Pet",
+      "description": "Pet listing information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "species": { "type": "string", "enum": ["cao", "gato"] },
+        "breed": { "type": "string" },
+        "status": { "type": "string", "enum": ["perdido", "encontrado", "avistado"] },
+        "lastSeenNeighborhood": { "type": "string" },
+        "description": { "type": "string" },
+        "hasReward": { "type": "boolean" },
+        "photos": { "type": "array", "items": { "type": "string" } },
+        "ownerId": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["species", "status", "ownerId"]
+    },
+    "Sighting": {
+      "title": "Sighting",
+      "description": "Information about a pet sighting",
+      "type": "object",
+      "properties": {
+        "petId": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "reporterName": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["petId", "reporterId"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Chat conversation between two users",
+      "type": "object",
+      "properties": {
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "petId": { "type": "string" },
+        "lastMessage": { "type": "string" },
+        "lastMessageAt": { "type": "string", "format": "date-time" },
+        "unreadCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participants"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Individual chat message",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "text"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string" },
+        "petId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "message"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "User profiles" },
+    "/pets/{petId}": { "schema": "Pet", "description": "Pet listings" },
+    "/sightings/{sightingId}": { "schema": "Sighting", "description": "Pet sightings" },
+    "/conversations/{convId}": { "schema": "Conversation", "description": "Chat conversations" },
+    "/conversations/{convId}/messages/{msgId}": { "schema": "Message", "description": "Chat messages" },
+    "/notifications/{notifId}": { "schema": "Notification", "description": "User notifications" }
+  }
+}
